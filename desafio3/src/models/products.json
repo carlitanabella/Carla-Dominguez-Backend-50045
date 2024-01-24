@@ -1,7 +1,16 @@
 [
     {
+        "id": 1,
+        "title": "camaron",
+        "description": "Este es un producto de prueba",
+        "price": 300,
+        "img": "Sin imagen",
+        "code": "abc1234",
+        "stock": 25
+      },
+    {
       "id": 2,
-      "title": "producto prueba 02",
+      "title": "camaron 2",
       "description": "Este es un producto de prueba",
       "price": 300,
       "img": "Sin imagen",
@@ -10,7 +19,7 @@
     },
     {
       "id": 3,
-      "title": "producto prueba 03",
+      "title": "camaron 3",
       "description": "Este es un producto de prueba",
       "price": 100,
       "img": "Sin imagen",
@@ -18,8 +27,8 @@
       "stock": 25
     },
     {
-      "id": 3,
-      "title": "producto prueba 03",
+      "id": 4,
+      "title": "camaron 4",
       "description": "Este es un producto de prueba",
       "price": 100,
       "img": "Sin imagen",

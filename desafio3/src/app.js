@@ -5,8 +5,10 @@ const PUERTO = 8080;
 const ProductManager = require("../src/controllers/Products-Manager");
 const productManager = new ProductManager("../src/models/products.json");
 
+app.use(express.json());
+
 app.get("/", (req,res)=>{
-    res.status(200).send("Welcome to my first wonderfull server");
+    res.status(200).send("Welcomeeeee");
 })
 
 app.get("/api/products", async (req,res)=>{

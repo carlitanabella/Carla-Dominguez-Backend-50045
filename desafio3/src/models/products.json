@@ -1,0 +1,53 @@
+[
+    {
+        "id": 1,
+        "title": "camaron",
+        "description": "Este es un producto de prueba",
+        "price": 300,
+        "img": "Sin imagen",
+        "code": "abc1234",
+        "stock": 25,
+        "category": "forrest",
+        "status": true,
+        "thumbails": []
+      },
+    {
+      "id": 2,
+      "title": "camaron 2",
+      "description": "Este es un producto de prueba",
+      "price": 300,
+      "img": "Sin imagen",
+      "code": "abc1234",
+      "stock": 25,
+      "category": "forrest",
+      "status": true,
+      "thumbails": []
+    },
+    {
+      "id": 3,
+      "title": "camaron 3",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "forrest",
+      "status": true,
+      "thumbails": []
+    
+
+    },
+    {
+      "id": 4,
+      "title": "camaron 4",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "forrest",
+      "status": true,
+      "thumbails": []
+    }
+]
+  

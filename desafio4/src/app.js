@@ -10,6 +10,8 @@ const exphbs = require("express-handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("./src/public"));
+
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
 app.set("views", "./src/views");
@@ -17,6 +19,7 @@ app.set("views", "./src/views");
 // Rutas para productos y carritos
 app.use("/api/products", routerProd);
 app.use("/api/carts", routerCart);
+app.use("/", viewsRouter);
 
 // Manejador de errores
 app.use((err, req, res, next) => {
@@ -31,7 +34,39 @@ app.listen(PORT, () => {
 });
 
 
+const httpServer = app.listen(PUERTO, () => {
+    console.log(`Servidor escuchando en el puerto ${PUERTO}`);
+});
 
+//array de productos: 
+const ProductManager = require("./controllers/Products-Manager.js");
+const productManager = new ProductManager("./src/models/products.json");
+
+//server de Socket.io
+const io = socket(httpServer);
+
+io.on("connection", async (socket) => {
+    console.log("Un cliente se conecto");
+
+   
+    socket.emit("productos", await productManager.getProducts());
+
+    socket.on("eliminarProducto",  async (id) => {
+        await productManager.deleteProduct(id);
+
+    
+        io.sockets.emit("productos", await productManager.getProducts());
+
+    })
+
+    //Agregar producto: 
+    socket.on("agregarProducto", async (producto) => {
+       console.log(producto);
+       await productManager.addProduct(producto);
+       io.sockets.emit("productos", await productManager.getProducts());
+   })
+    
+})
 
 
 

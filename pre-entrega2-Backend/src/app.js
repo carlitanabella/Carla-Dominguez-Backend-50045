@@ -7,6 +7,7 @@ const PORT = 8080;
 const app = express();
 const exphbs = require("express-handlebars");
 const socket = require("socket.io");
+const helper = require("./helpers/helper.js");
 
 require("./database.js");
 

@@ -26,6 +26,7 @@ class ProductManager {
             thumbnails: thumbnails || []
         });
             await nuevoProducto.save();
+            return nuevoProducto;
         }
         catch (error) {
 
@@ -34,15 +35,70 @@ class ProductManager {
         }
     }
 
-    async getProducts() {
+    async getProducts({limit = 10, page = 1, sort, query }) {
+        const limit = queryObject.limit;
+        const page = queryObject.page;
+        const sort = queryObject.sort;
+        const query = queryObject.query;
+        let productos;
         try {
-            const productos = await ProductModel.find();
+            let produ = {
+                limit: limit || 10,
+                page: page || 1,
+                lean: true
+              };
+              if (sort) {
+                produ.sort = { price: sort };
+              }
+              if (query) {
+                productos = await ProductModel.paginate({ category: query }, produ);
+              } else {
+                productos = await ProductModel.paginate({}, produ);
+              }
+              productos.prevLink = this.handleQueryString(
+                queryObject,
+                productos.prevPage
+              );
+              productos.nextLink = this.handleQueryString(
+                queryObject,
+                productos.nextPage
+              );
             return productos;
         } catch (error) {
             console.log("Error al recuperar los productos", error);
             throw error;
         }
     }
+
+    handleQueryString(queryObject, value) {
+        if (value) {
+          const queryProdu = Object.keys(queryObject).map((key) =>
+          {
+            if (key === "page") {
+                return `page= ${valor}`;
+            } else {
+                return `${key} = ${queryObject[key]}`;
+            }
+        });
+          console.log("queryString:", queryProdu);
+          if (!queryObject.page) {
+            queryProdu.push(`page=${value}`);
+          }
+          return "/api/products/view?" + queryProdu.join("&");
+        }
+        return null;
+      }
+    
+    
+      async getProductsLean() {
+        try {
+          const productos = await ProductModel.find().lean();
+          return productos;
+        } catch (error) {
+          throw error;
+        }
+      }
+    
 
     async getProductById(id) {
         try {

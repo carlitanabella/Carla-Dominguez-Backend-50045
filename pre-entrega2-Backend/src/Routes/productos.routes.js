@@ -5,7 +5,7 @@ const routerProd = Router();
 const pManager = new ProductManager();
 
 routerProd.get("/", async (req, res) => {
-    const { limit } = req.query;
+    const { limit = 10, page = 1, sort, query } = req.query;
     try {
         const products = await pManager.getProducts();
         if (products) {

@@ -1,0 +1,121 @@
+[
+    {
+        "id": 1,
+        "title": "camaron",
+        "description": "Este es un producto de prueba",
+        "price": 300,
+        "img": "Sin imagen",
+        "code": "abc1234",
+        "stock": 25,
+        "category": "forrest",
+        "status": true,
+        "thumbails": []
+      },
+    {
+      "id": 2,
+      "title": "camaron 2",
+      "description": "Este es un producto de prueba",
+      "price": 300,
+      "img": "Sin imagen",
+      "code": "abc1234",
+      "stock": 25,
+      "category": "forrest",
+      "status": true,
+      "thumbails": []
+    },
+    {
+      "id": 3,
+      "title": "camaron 3",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "forrest",
+      "status": true,
+      "thumbails": []
+    
+
+    },
+    {
+      "id": 4,
+      "title": "camaron 4",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "forrest",
+      "status": true,
+      "thumbails": []
+    },
+    {
+      "id": 5,
+      "title": "camaron 5",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "Forrest Gump",
+      "status": true,
+      "thumbails": []
+    },
+    {
+      "id": 6,
+      "title": "camaron 6",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "Forrest Gump",
+      "status": true,
+      "thumbails": []
+    }, {
+      "id": 7,
+      "title": "camaron 7",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "Forrest Gump",
+      "status": true,
+      "thumbails": []
+    }, {
+      "id": 8,
+      "title": "camaron 8",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "Forrest Gump",
+      "status": true,
+      "thumbails": []
+    }, {
+      "id": 9,
+      "title": "camaron 9",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "Forrest Gump",
+      "status": true,
+      "thumbails": []
+    }, {
+      "id": 10,
+      "title": "camaron 10",
+      "description": "Este es un producto de prueba",
+      "price": 100,
+      "img": "Sin imagen",
+      "code": "abc12345",
+      "stock": 25,
+      "category": "Forrest Gump",
+      "status": true,
+      "thumbails": []
+    }
+]
+  

@@ -3,7 +3,7 @@ import routerCart from "./Routes/carts.routes.js";
 import routerProd from "./Routes/productos.routes.js";
 
 const express = require("express");
-const PORT = 8080;
+const PORT = 1080;
 const app = express();
 const exphbs = require("express-handlebars");
 const socket = require("socket.io");
@@ -58,8 +58,8 @@ app.listen(PORT, () => {
 });
 
 
-const httpServer = app.listen(PUERTO, () => {
-    console.log(`Servidor escuchando en el puerto ${PUERTO}`);
+const httpServer = app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
 //array de productos: 

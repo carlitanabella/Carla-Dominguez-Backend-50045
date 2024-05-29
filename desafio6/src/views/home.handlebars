@@ -1,0 +1,18 @@
+<div class="containerproductos">
+    {{#each productos}}
+    <p>{{this.nombre}}</p>
+    <p>{{this.description}}</p>
+    <p>{{this.precio}}</p>
+    {{/each}}
+</div>
+
+{{#if hasPrevPage}}
+    <a href="/pizzas?page={{prevPage}}"> Anterior </a>
+{{/if}}
+
+{{#if hasNextPage}}
+    <a href="/pizzas?page={{nextPage}}"> Siguiente </a>
+{{/if}}
+
+
+<p>Pagina {{currentPage}} de {{totalPages}} </p>

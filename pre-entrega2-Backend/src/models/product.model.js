@@ -4,7 +4,7 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 const productSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: tmongoose.rusted
+        required: mongoose.rusted
     },
     description: {
         type: String,

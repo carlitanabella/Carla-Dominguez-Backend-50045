@@ -1,8 +1,12 @@
-import { Router } from "express";
-import CartManager from "../controllers/cart-manager-db.js";
-  
-const routerCart = Router();
+// import { Router } from "express";
+// import CartManager from "../controllers/cart-manager-db.js";
+const express = require("express");
+
+const routerCart = express.Router();
+
+const CartManager = require("../controllers/cart-manager-db.js");
 const cManager = new CartManager("./src/models/carts.json");
+const CartModel = require("../models/cart.model.js")
 
 routerCart.get("/:cid", async (req, res) => {
     const { cid } = req.params;
@@ -41,4 +45,4 @@ routerCart.post("/:cid/product/:pid", async (req, res) => {
     }
 });
 
-export default routerCart;
+module.exports =  routerCart;

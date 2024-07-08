@@ -1,7 +1,9 @@
-import { Router } from "express";
-import ProductManager from "../controllers/product-manager-db.js";
-
-const routerProd = Router();
+// import { Router } from "express";
+// import ProductManager from "../controllers/product-manager-db.js";
+const express = require("express");
+// const router = express.Router();
+const routerProd = express.Router();
+const ProductManager = require("../controllers/product-manager-db.js");
 const pManager = new ProductManager();
 
 routerProd.get("/", async (req, res) => {
@@ -67,4 +69,4 @@ routerProd.delete("/:pid", async (req, res) => {
     }
 });
 
-export default routerProd;
+module.exports = routerProd;

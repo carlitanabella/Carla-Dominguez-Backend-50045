@@ -36,22 +36,24 @@ class ProductManager {
     }
 
     async getProducts({limit = 10, page = 1, sort, query }) {
-        const limit = queryObject.limit;
-        const page = queryObject.page;
-        const sort = queryObject.sort;
-        const query = queryObject.query;
+        // const limit = queryObject.limit;
+        // const page = queryObject.page;
+        // const sort = queryObject.sort;
+        // const query = queryObject.query;
+        // let productos;
+        const { limit: queryLimit = 10, page: queryPage = 1, sort: querySort, query: queryFilter } = queryObject;
         let productos;
         try {
             let produ = {
-                limit: limit || 10,
-                page: page || 1,
+                limit: queryLimit,
+                page: queryPage,
                 lean: true
               };
-              if (sort) {
-                produ.sort = { price: sort };
+              if (querySort) {
+                produ.sort = { price: querySort };
               }
-              if (query) {
-                productos = await ProductModel.paginate({ category: query }, produ);
+              if (queryFilter) {
+                productos = await ProductModel.paginate({ category: queryFilter }, produ);
               } else {
                 productos = await ProductModel.paginate({}, produ);
               }

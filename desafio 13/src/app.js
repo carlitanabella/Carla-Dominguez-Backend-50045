@@ -12,7 +12,7 @@ import sessionRouter from "./Routes/session.router.js";
 import usuariosRouter from "./Routes/usuarios.router.js";
 import manejadorError from "./middleware/error.js";
 import compression from "express-compression"; 
-import ProductManager from "./controllers/Products-Manager.js";
+import ProductManager from "./controllers/product-manager-db.js"; 
 import viewsRouter from "./Routes/views.router.js";
 import './database.js';
 

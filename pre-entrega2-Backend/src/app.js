@@ -1,6 +1,6 @@
-import express from "express";
-import routerCart from "./Routes/carts.routes.js";
-import routerProd from "./Routes/productos.routes.js";
+// import express from `express`;
+// import routerCart from "./src/Routes/carts.routes.js";
+// import routerProd from "./src/Routes/productos.routes.js";
 
 const express = require("express");
 const PORT = 8080;
@@ -8,6 +8,10 @@ const app = express();
 const exphbs = require("express-handlebars");
 const socket = require("socket.io");
 const helper = require("./helpers/helper.js");
+
+const routerProd = require("./Routes/productos.routes.js");
+const routerCart = require("./Routes/carts.routes.js");
+const viewsRouter = require("./Routes/views.router.js");
 
 require("./database.js");
 
@@ -31,46 +35,46 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something went wrong!');
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on https://localhost:${PORT}`);
-    console.log(`Products API available at https://localhost:${PORT}/api/products`);
-    console.log(`Carts API available at https://localhost:${PORT}/api/carts`);
+// app.listen(PORT, () => {
+//     console.log(`Server is running on https://localhost:${PORT}`);
+//     console.log(`Products API available at https://localhost:${PORT}/api/products`);
+//     console.log(`Carts API available at https://localhost:${PORT}/api/carts`);
+// });
+
+
+const httpServer = app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
+// //array de productos: 
+//  const ProductManager = require("./controllers/products-manager-db.js");
+//  const productManager = new ProductManager("./src/models/products.json");
 
-const httpServer = app.listen(PUERTO, () => {
-    console.log(`Servidor escuchando en el puerto ${PUERTO}`);
-});
+// //server de Socket.io
+// const io = socket(httpServer);
 
-//array de productos: 
-const ProductManager = require("./controllers/Products-Manager.js");
-const productManager = new ProductManager("./src/models/products.json");
-
-//server de Socket.io
-const io = socket(httpServer);
-
-io.on("connection", async (socket) => {
-    console.log("Un cliente se conecto");
+// io.on("connection", async (socket) => {
+//     console.log("Un cliente se conecto");
 
    
-    socket.emit("productos", await productManager.getProducts());
+//     socket.emit("productos", await productManager.getProducts());
 
-    socket.on("eliminarProducto",  async (id) => {
-        await productManager.deleteProduct(id);
+//     socket.on("eliminarProducto",  async (id) => {
+//         await productManager.deleteProduct(id);
 
     
-        io.sockets.emit("productos", await productManager.getProducts());
+//         io.sockets.emit("productos", await productManager.getProducts());
 
-    })
+//     })
 
-    //Agregar producto: 
-    socket.on("agregarProducto", async (producto) => {
-       console.log(producto);
-       await productManager.addProduct(producto);
-       io.sockets.emit("productos", await productManager.getProducts());
-   })
+//     //Agregar producto: 
+//     socket.on("agregarProducto", async (producto) => {
+//        console.log(producto);
+//        await productManager.addProduct(producto);
+//        io.sockets.emit("productos", await productManager.getProducts());
+//    })
     
-})
+// })
 
 
 

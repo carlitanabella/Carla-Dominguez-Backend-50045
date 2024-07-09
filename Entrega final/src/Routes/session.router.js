@@ -1,53 +1,68 @@
 const express = require("express");
 const router = express.Router();
-const UserModel = require("../models/user.model.js");
-const { isValidPassword } = require("../utils/hashbcryp.js");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
+const AuthController = require("../controllers/auth.controller.js");
+const authController = new AuthController();
 
+const upload = require("../middleware/multer.js");
 
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  if (email == "adminCoder@coder.com" && password == "adminCod3r123") {
-    req.session.login = true;
-    req.session.user = {
-      email: email,
-      password: password,
-      first_name: "admin",
-      last_name: "admin",
-      age: 30,
-      rol: "admin",
-    };
-    res.redirect("/api/products/view");
-  } else {
-    try {
-      
-      const usuario = await UserModel.findOne({ email: email });
+router.post(
+  "/login",
+  passport.authenticate("login", {
+    failureRedirect: "/views/login?error=true",
+    session: false,
+  }),
+  authController.login
+);
 
-      if (usuario) {
+router.post(
+  "/register",
+  passport.authenticate("register", {
+    failureRedirect: "/views/register?error=true",
+    session: false,
+  }),
+  authController.register
+);
 
-        if (isValidPassword(password, usuario)) {
-          req.session.login = true;
-          req.session.user = { ...usuario._doc };
+router.get(
+  "/github",
+  passport.authenticate("github", { scope: ["user:email"], session: false }),
+  authController.github
+);
 
-          res.redirect("/api/products/view");
-        } else {
-          res.status(401).send({ error: "Contraseña no valida" });
-        }
-      } else {
-        res.status(404).send({ error: "Usuario no encontrado" });
-      }
-    } catch (error) {
-      res.status(400).send({ error: "Error en el login" });
-    }
-  }
-});
+router.get(
+  "/githubcallback",
+  passport.authenticate("github", {
+    failureRedirect: "/views/login?error=true",
+    session: false,
+  }),
+  authController.githubcallback
+);
 
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  authController.current
+);
 
-router.get("/logout", (req, res) => {
-  if (req.session.login) {
-    req.session.destroy();
-  }
-  res.redirect("/auth/login");
-});
+router.get("/logout", authController.logout);
+
+router.post("/requestPasswordReset", authController.requestPasswordReset);
+
+router.post("/reset-password", authController.resetPassword);
+
+router.put("/premium/:uid", authController.changeRolToPremium);
+
+router.post(
+  "/:uid/documents",
+  upload.fields([
+    { name: "document" },
+    { name: "products" },
+    { name: "profile" },
+  ]),
+  authController.uploadUserFile
+);
 
 module.exports = router;

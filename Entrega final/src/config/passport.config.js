@@ -5,9 +5,6 @@ const jwt = require("passport-jwt");
 const JWTStrategy = jwt.Strategy;
 const ExtractJwt = jwt.ExtractJwt;
 const UserModel = require("../models/user.model.js");
-
-
-const UserModel = require("../models/user.model.js");
 const { createHash, isValidPassword } = require("../utils/hashbcryp.js");
 
 const LocalStrategy = local.Strategy;

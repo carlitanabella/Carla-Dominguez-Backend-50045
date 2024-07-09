@@ -6,10 +6,13 @@ const express = require("express");
 const PORT = 8080;
 const app = express();
 const exphbs = require("express-handlebars");
+
 const socket = require("socket.io");
 const helper = require("./helpers/helper.js");
 const viewsRouter = require('../src/Routes/views.router.js');
-
+const initializePassport = require("./config/passport.config.js");
+const passport = require("passport");
+const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
@@ -22,9 +25,10 @@ const routerCart = require('./Routes/carts.routes.js');
 require("./database.js");
 
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("./src/public"));
+app.use(express.json());
+app.use(cookieParser());
+app.use(passport.initialize());
 
 app.use(session({
     secret: "secretcoder",
